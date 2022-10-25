@@ -5,7 +5,7 @@ let app = {
 
     app.loadCryptoInfo()
 
-    // Recupere la date à l'instant T au démarrage de l'appli
+    // Recupere la date ï¿½ l'instant T au dï¿½marrage de l'appli
     app.getRealDate()
 
     // Recupere la diff de temps en Timestamp entre 2 dates
@@ -56,7 +56,7 @@ let app = {
 
     quiterSince = app.dhm(diffTime)
 
-    $('#quiterSince').empty().html(quiterSince[0] + 'j ' + quiterSince[1] + 'h ' + quiterSince[2] + 'min ' + quiterSince[3] + 'sec')
+    $('#quiterSince').empty().html('<span>since ' + quiterSince[0] + ' days ' + quiterSince[1] + ' hours ' + quiterSince[2] + ' minutes and ' + quiterSince[3] + ' sec </span>')
 
   },
 
@@ -78,31 +78,25 @@ let app = {
 
     //bitcoin ?? 
     if (cryptoInfo != null) {
-      // console.log(cryptoInfo)
-      // console.log(cryptoInfo['bitcoin'].eur)
-      // console.log(moneySaved)
       bitcoin = moneySaved / cryptoInfo['bitcoin'].eur
       chiliz = moneySaved / cryptoInfo['chiliz'].eur
       egold = moneySaved / cryptoInfo['elrond-erd-2'].eur
-      // console.log(bitcoin)
-      // console.log(chiliz)
-      // console.log(egold)
     } 
 
     timeBetweenACig = Math.round(24 * 60 / cigarettesByDay)
 
-    $('#unsmokedCigarettesLiveValue').empty().html('<strong>unsmokedCigarettesLiveValue: ' + unsmokedCigarettesLiveValue + '</strong>')
-    $('#unsmokedCigarettesLiveValueRounded').html('<strong>unsmokedCigarettesLiveValueRounded: ' + unsmokedCigarettesLiveValueRounded + '</strong>')
-    $('#unsmokedCigarettesLiveValueDecimals').html('<strong>unsmokedCigarettesLiveValueDecimals: ' + unsmokedCigarettesDecimals + '</strong>')
-    $('#unsmokedCigarettes').html('<strong>unsmokedCigarettes ' + unsmokedCigarettes + '</strong>')
-    $('#moneySaved').html('<strong>moneySaved ' + moneySaved.toFixed(2) + '</strong>')
-    $('#packOfCigs').html('<strong>packOfCig ' + Math.floor(packOfCig) + '</strong>')
-    $('#burgers').html('<strong>burgers ' + Math.floor(burgers) + '</strong>')
+    $('#unsmokedCigarettesLiveValue').empty().html('unsmokedCigarettesLiveValue: ' + unsmokedCigarettesLiveValue)
+    $('#unsmokedCigarettesLiveValueRounded').html('unsmokedCigarettesLiveValueRounded: ' + unsmokedCigarettesLiveValueRounded)
+    $('#unsmokedCigarettesLiveValueDecimals').html('unsmokedCigarettesLiveValueDecimals: ' + unsmokedCigarettesDecimals)
+    $('#unsmokedCigarettes').html('unsmokedCigarettes ' + unsmokedCigarettes)
+    $('#moneySaved').html('' + moneySaved.toFixed(2))
+    $('#packOfCigs').html('' + Math.floor(packOfCig))
+    $('#burgers').html(Math.floor(burgers))
     
     if (cryptoInfo != null) {
-      $('#bitcoin').html('<div class="flex items-center"><strong>bitcoin ' + bitcoin.toFixed(4) + '</strong><img src="./btc.png" class="h-8 w-8" /></div>')
-      $('#chiliz').html('<div class="flex items-center"><strong>chiliz ' + Math.floor(chiliz) + '</strong><img src="./chz.png" class="h-8 w-8" /></div>')
-      $('#egold').html('<strong>egold ' + Math.floor(egold) + '</strong>')
+      $('#bitcoin').html(bitcoin.toFixed(4))
+      $('#chiliz').html('<div class="flex items-center">chiliz ' + Math.floor(chiliz) + '</strong><img src="./chz.png" class="h-8 w-8" /></div>')
+      $('#egold').html('egold ' + Math.floor(egold))
     }
 
   },
@@ -126,8 +120,8 @@ let app = {
     $.fn.gauge = function(opts) {
       this.each(function() {
         var $this = $(this),
-            data = $this.data();
-    
+          data = $this.data()
+            
         if (data.gauge) {
           data.gauge.stop();
           delete data.gauge;

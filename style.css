@@ -4,13 +4,12 @@
 @tailwind components;
 
 body {
-    font-family: 'Inter';
+    font-family: 'Poppins';
 }
 
 .gauge-container {
-    width: 150px;
-    height: 150px;
-    padding: 10px;
+    width: 125px;
+    height: 125px;
     overflow: hidden;
   }
   .gauge-container > .gauge > .dial {
