@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600;700;800&family=Poppins:wght@200;300;400;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+
+body {
+    font-family: 'Inter';
+}
+
+.gauge-container {
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+    overflow: hidden;
+  }
+  .gauge-container > .gauge > .dial {
+    stroke: #e9d5ff;
+    stroke-width: 0.7;
+  }
+  
+  .gauge-container > .gauge > .value {
+    stroke: #a855f7;
+    stroke-width: 1;
+  }
+  
+  .gauge-container > .gauge > .text-container > text.value-text {
+    fill: #111827;
+    font-family: 'Inter';
+    font-weight: bold;
+    font-size: 1em;
+  }
+
+@tailwind utilities;
