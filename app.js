@@ -63,7 +63,7 @@ let app = {
   loadDynamicInfos: function() {
 
     // Base value
-    cigarettesByDay = 15 // in 24*60 = 1400min
+    cigarettesByDay = 200 // in 24*60 = 1400min
     priceOneCig = 0.465
 
     // let nonSmokinCigarettes = cigarettesByDay * diffDays
@@ -89,6 +89,7 @@ let app = {
     $('#unsmokedCigarettesLiveValueRounded').html('unsmokedCigarettesLiveValueRounded: ' + unsmokedCigarettesLiveValueRounded)
     $('#unsmokedCigarettesLiveValueDecimals').html('unsmokedCigarettesLiveValueDecimals: ' + unsmokedCigarettesDecimals)
     $('#unsmokedCigarettes').html('unsmokedCigarettes ' + unsmokedCigarettes)
+    $('#eachMinutes').html(' ' + timeBetweenACig + ' ')
     $('#moneySaved').html('' + moneySaved.toFixed(2))
     $('#packOfCigs').html('' + Math.floor(packOfCig))
     $('#burgers').html(Math.floor(burgers))
@@ -136,12 +137,10 @@ let app = {
   },
 
   updateGauge: function() {
-    opts = {
-      lineWidth: 0.42,
-      value: unsmokedCigarettesDecimals,
-      label: function() { return unsmokedCigarettes} // returns a string label that will be rendered in the center
-    };
-    $.fn.gauge = function(opts) {
+    
+    gauge = $('#gauge0').empty()
+    /* $.fn.gauge = function(opts) {
+
       this.each(function() {
         var $this = $(this),
             data = $this.data();
@@ -155,12 +154,24 @@ let app = {
         }
       });
       return this;
-    };
+    }; */
 
-    // $('#unsmokedCigarettesLiveValue').empty().html('<strong>unsmokedCigarettesLiveValue: ' + unsmokedCigarettesLiveValue + '</strong>')
-    // $('#unsmokedCigarettesLiveValueRounded').html('<strong>unsmokedCigarettesLiveValueRounded: ' + unsmokedCigarettesLiveValueRounded + '</strong>')
-    // $('#unsmokedCigarettesLiveValueDecimals').html('<strong>unsmokedCigarettesLiveValueDecimals: ' + unsmokedCigarettesDecimals + '</strong>')
-    // $('#unsmokedCigarettes').html('<strong>unsmokedCigarettes ' + unsmokedCigarettes + '</strong>')
+    const opts = {
+      lineWidth: 0,
+      dialStartAngle: -90,
+      dialEndAngle: -90.001,
+      value: unsmokedCigarettesDecimals,
+      min: 0,
+      max: 100,
+      valueDialClass: "value",
+      valueClass: "value-text",
+      dialClass: "dial",
+      gaugeClass: "gauge",
+      showValue: true,
+      label: function() { return unsmokedCigarettes} // returns a string label that will be rendered in the center
+    }; 
+
+    gauge = Gauge(document.getElementById('gauge0'), opts); // create sexy gauge!
     
   },
 
