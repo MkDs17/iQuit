@@ -22,85 +22,163 @@
 
         <div class="text-xl text-white font-semibold text-center pb-20">and this is what he saved ...</div>
 
-        <div class="flex items-center justify-center">
-            <div class="flex items-center rounded-xl bg-sky-100 p-5 shadow-lg border-l-4 rounded-l-lg border-sky-700">
-                <div class="flex h-10 w-10 items-center justify-center rounded-full border border-sky-100 bg-sky-50">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-8 h-8 text-stone-800">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 7.756a4.5 4.5 0 100 8.488M7.5 10.5h5.25m-5.25 3h5.25M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+        <div class="flex justify-center px-4">
+            <div class='flex flex-col w-1/5 justify-evenly'>
+                <div class="flex items-center rounded-xl bg-sky-100 p-5 shadow-lg border-l-4 rounded-l-lg border-sky-700">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full border border-sky-100 bg-sky-50">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-8 h-8 text-stone-800">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 7.756a4.5 4.5 0 100 8.488M7.5 10.5h5.25m-5.25 3h5.25M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                
+                    <div class="ml-4">
+                        <h3 class="font-semibold text-xl"><span id="moneySaved"></span> € </h3>
+                        <p class="text-xs font-light text-slate-400">money saved</p>
+                        <!-- <p class="mt-2 text-sm text-gray-500">Last opened 4 days ago</p> -->
+                    </div>
                 </div>
-            
-                <div class="ml-4">
-                    <h3 class="font-semibold text-xl"><span id="moneySaved"></span> € </h3>
-                    <p class="text-xs font-light text-slate-400">money saved</p>
-                    <!-- <p class="mt-2 text-sm text-gray-500">Last opened 4 days ago</p> -->
+               
+                <div class="flex items-center rounded-xl bg-sky-100 p-5 shadow-lg border-l-4 rounded-l-lg border-sky-700">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full border border-sky-100 bg-sky-50">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-6 h-6 text-stone-800">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+                        </svg>
+                          
+                    </div>
+                
+                    <div class="ml-4">
+                        <h3 class="font-semibold text-xl"><span id="packOfCigs"></span></h3>
+                        <p class="text-xs font-light text-slate-400">cigarettes packs</p>
+                        <!-- <p class="mt-2 text-sm text-gray-500">Last opened 4 days ago</p> -->
+                    </div>
                 </div>
             </div>
-            <div class="max-w-sm bg-sky-100 rounded-lg shadow-md mx-16">
-                <!-- <img class="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" /> -->
-                <div class="p-5">
-                    <div id="gauge0" class="gauge-container m-auto"></div>
-                    <a href="#">
-                        <h4 class="mb-1 text-2xl font-bold tracking-tight text-slate-800">Unsmoked Cigarettes</h4>
-                        <span class="mb-2 text-sm text-slate-800 text-center w-full">One cigs each <span class="" id="eachMinutes"></span> minutes</span>
-                    </a>
+
+            <div class="flex items-center justify-center w-2/5">
+                <div class="max-w-sm bg-sky-100 rounded-lg shadow-md mx-16">
+                    <!-- <img class="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" /> -->
+                    <div class="p-5">
+                        <div id="gauge0" class="gauge-container m-auto"></div>
+                        <a href="#">
+                            <h4 class="mb-1 text-2xl font-bold tracking-tight text-slate-800">Unsmoked Cigarettes</h4>
+                            <span class="mb-2 text-sm text-slate-800 text-center w-full">One cigaret each <span class="" id="eachMinutes"></span> minutes</span>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="flex items-center rounded-xl bg-sky-100 p-5 shadow-lg border-l-4 rounded-l-lg border-sky-700">
-                <div class="flex h-10 w-10 items-center justify-center rounded-full border border-sky-100 bg-sky-50">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-6 h-6 text-stone-800">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
-                    </svg>
-                      
-                </div>
             
-                <div class="ml-4">
-                    <h3 class="font-semibold text-xl"><span id="packOfCigs"></span></h3>
-                    <p class="text-xs font-light text-slate-400">cigarettes packs</p>
-                    <!-- <p class="mt-2 text-sm text-gray-500">Last opened 4 days ago</p> -->
+            <div class='flex flex-col w-1/5 justify-evenly'>
+                <div class="flex items-center rounded-xl bg-sky-100 p-5 shadow-lg border-l-4 rounded-l-lg border-sky-700">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full border border-sky-100 bg-sky-50">
+                        <img src="./btc.png" class="h-7 w-7" />
+                    </div>
+                
+                    <div class="ml-4">
+                        <h3 class="font-semibold text-xl"><span id="bitcoin"></span></h3>
+                        <p class="text-xs font-light text-slate-400">bitcoin invested</p>
+                        <!-- <p class="mt-2 text-sm text-gray-500">Last opened 4 days ago</p> -->
+                    </div>
+                </div>
+    
+                <div class="flex items-center rounded-xl bg-sky-100 p-5 shadow-lg border-l-4 rounded-l-lg border-sky-700">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full border border-sky-100 bg-sky-50">
+                            <img src="./burger.png" class="h-7 w-7" />
+                        </svg>
+                    </div>
+                
+                    <div class="ml-4">
+                        <h3 class="font-semibold text-xl"><span id="burgers"></span></h3>
+                        <p class="text-xs font-light text-slate-400">burgers eaten</p>
+                        <!-- <p class="mt-2 text-sm text-gray-500">Last opened 4 days ago</p> -->
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="flex items-center justify-around mt-10 m-auto w-1/2">
-            <div class="flex items-center rounded-xl bg-sky-100 p-5 shadow-lg border-l-4 rounded-l-lg border-sky-700">
-                <div class="flex h-10 w-10 items-center justify-center rounded-full border border-sky-100 bg-sky-50">
-                    <img src="./btc.png" class="h-7 w-7" />
+        <div class="flex justify-center px-4 mt-10 slideshow-container">
+            <div class="flex justify-center px-4 mt-10 slideshow">
+                <div class="flex items-center justify-center mx-1 relative" id='hour'>
+                    <div class="w-96 rounded-xl shadow-md p-5 border border-gray-50 bg-sky-100">
+                        <p class="text-slate-800 font-semibold">1 hour</p>
+                        <div class="w-full bg-gray-200 rounded-full h-1 mt-3">
+                            <div class="bg-sky-500 h-1 rounded-full" id='hourPourcentage'></div>
+                        </div>
+                        <p class="text-gray-500 text-xs mt-3">Blood pressure begins to drop, and circulation may start to improve.</p>
+                    </div>
                 </div>
-            
-                <div class="ml-4">
-                    <h3 class="font-semibold text-xl"><span id="bitcoin"></span></h3>
-                    <p class="text-xs font-light text-slate-400">bitcoin invested</p>
-                    <!-- <p class="mt-2 text-sm text-gray-500">Last opened 4 days ago</p> -->
+                <div class="flex items-center justify-center mx-1 relative" id='twelveHours'>
+                    <div class="w-96 rounded-xl shadow-md p-5 border border-gray-50 bg-sky-100">
+                        <p class="text-slate-800 font-semibold">12 hours</p>
+                        <div class="w-full bg-gray-200 rounded-full h-1 mt-3">
+                            <div class="bg-sky-500 h-1 rounded-full" id="twelveHoursPourcentage"></div>
+                        </div>
+                        <p class="text-gray-500 text-xs mt-3">The carbon monoxide level returns to normal, increasing the body’s oxygen levels.</p>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center mx-1 relative" id=''>
+                    <div class="w-96 rounded-xl shadow-md p-5 border border-gray-50 bg-sky-100">
+                        <p class="text-slate-800 font-semibold">12 hours</p>
+                        <div class="w-full bg-gray-200 rounded-full h-1 mt-3">
+                            <div class="bg-sky-500 h-1 rounded-full" id=""></div>
+                        </div>
+                        <p class="text-gray-500 text-xs mt-3">The carbon monoxide level returns to normal, increasing the body’s oxygen levels.</p>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center mx-1 relative" id=''>
+                    <div class="w-96 rounded-xl shadow-md p-5 border border-gray-50 bg-sky-100">
+                        <p class="text-slate-800 font-semibold">12 hours</p>
+                        <div class="w-full bg-gray-200 rounded-full h-1 mt-3">
+                            <div class="bg-sky-500 h-1 rounded-full" id=""></div>
+                        </div>
+                        <p class="text-gray-500 text-xs mt-3">The carbon monoxide level returns to normal, increasing the body’s oxygen levels.</p>
+                    </div>
                 </div>
             </div>
-
-            <div class="flex items-center rounded-xl bg-sky-100 p-5 shadow-lg border-l-4 rounded-l-lg border-sky-700">
-                <div class="flex h-10 w-10 items-center justify-center rounded-full border border-sky-100 bg-sky-50">
-                        <img src="./burger.png" class="h-7 w-7" />
-                    </svg>
+            <div class="flex justify-center px-4 mt-10 slideshow2">
+                <div class="flex items-center justify-center mx-1 relative" id='hour'>
+                    <div class="w-96 rounded-xl shadow-md p-5 border border-gray-50 bg-sky-100">
+                        <p class="text-slate-800 font-semibold">1 hour</p>
+                        <div class="w-full bg-gray-200 rounded-full h-1 mt-3">
+                            <div class="bg-sky-500 h-1 rounded-full" id='hourPourcentage'></div>
+                        </div>
+                        <p class="text-gray-500 text-xs mt-3">Blood pressure begins to drop, and circulation may start to improve.</p>
+                    </div>
                 </div>
-            
-                <div class="ml-4">
-                    <h3 class="font-semibold text-xl"><span id="burgers"></span></h3>
-                    <p class="text-xs font-light text-slate-400">burgers eaten</p>
-                    <!-- <p class="mt-2 text-sm text-gray-500">Last opened 4 days ago</p> -->
+                <div class="flex items-center justify-center mx-1 relative" id='twelveHours'>
+                    <div class="w-96 rounded-xl shadow-md p-5 border border-gray-50 bg-sky-100">
+                        <p class="text-slate-800 font-semibold">12 hours</p>
+                        <div class="w-full bg-gray-200 rounded-full h-1 mt-3">
+                            <div class="bg-sky-500 h-1 rounded-full" id="twelveHoursPourcentage"></div>
+                        </div>
+                        <p class="text-gray-500 text-xs mt-3">The carbon monoxide level returns to normal, increasing the body’s oxygen levels.</p>
+                    </div>
                 </div>
-            </div>
-
-            <div class="flex items-center rounded-xl bg-sky-100 p-5 shadow-lg border-l-4 rounded-l-lg border-sky-700">
-                <div class="flex h-10 w-10 items-center justify-center rounded-full border border-sky-100 bg-sky-50">
-                        <img src="./burger.png" class="h-4 w-4" />
-                    </svg>
+                <div class="flex items-center justify-center mx-1 relative" id=''>
+                    <div class="w-96 rounded-xl shadow-md p-5 border border-gray-50 bg-sky-100">
+                        <p class="text-slate-800 font-semibold">12 hours</p>
+                        <div class="w-full bg-gray-200 rounded-full h-1 mt-3">
+                            <div class="bg-sky-500 h-1 rounded-full" id=""></div>
+                        </div>
+                        <p class="text-gray-500 text-xs mt-3">The carbon monoxide level returns to normal, increasing the body’s oxygen levels.</p>
+                    </div>
                 </div>
-            
-                <div class="ml-4">
-                    <h3 class="font-semibold text-xl"><span id="burgers"></span></h3>
-                    <p class="text-xs font-light text-slate-400">burgers</p>
-                    <!-- <p class="mt-2 text-sm text-gray-500">Last opened 4 days ago</p> -->
+                <div class="flex items-center justify-center mx-1 relative" id=''>
+                    <div class="w-96 rounded-xl shadow-md p-5 border border-gray-50 bg-sky-100">
+                        <p class="text-slate-800 font-semibold">12 hours</p>
+                        <div class="w-full bg-gray-200 rounded-full h-1 mt-3">
+                            <div class="bg-sky-500 h-1 rounded-full" id=""></div>
+                        </div>
+                        <p class="text-gray-500 text-xs mt-3">The carbon monoxide level returns to normal, increasing the body’s oxygen levels.</p>
+                    </div>
                 </div>
             </div>
         </div>
+
+        
+        
+          
+
+        <!-- https://www.medicalnewstoday.com/articles/317956#timeline -->
 
         <!-- <span class='absolute top-0 left-0'>
             <img src="smoke.webp" alt="" srcset=""/>

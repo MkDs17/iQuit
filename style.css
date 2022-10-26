@@ -12,21 +12,53 @@ body {
     height: 125px;
     overflow: hidden;
   }
-  .gauge-container > .gauge > .dial {
-    stroke: #e9d5ff;
-    stroke-width: 0.7;
+.gauge-container > .gauge > .dial {
+  stroke: #e9d5ff;
+  stroke-width: 0.7;
+}
+
+.gauge-container > .gauge > .value {
+  stroke: #a855f7;
+  stroke-width: 1;
+}
+
+.gauge-container > .gauge > .text-container > text.value-text {
+  fill: #111827;
+  font-family: 'Inter';
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.slideshow-container {
+  position: relative;
+  height: 400px;
+  width: 2000px;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+}
+.slideshow-container > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  transform: translate3d(0, 0, 0);
+}
+
+.slideshow {
+  animation: moveSlideshow 30s linear infinite;
+}
+.slideshow2 {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+  background-position: 0 -200px;
+  animation: moveSlideshow 20s linear infinite;
+}
+
+
+@keyframes moveSlideshow {
+  100% { 
+    transform: translateX(-66.99999%);  
   }
-  
-  .gauge-container > .gauge > .value {
-    stroke: #a855f7;
-    stroke-width: 1;
-  }
-  
-  .gauge-container > .gauge > .text-container > text.value-text {
-    fill: #111827;
-    font-family: 'Inter';
-    font-weight: bold;
-    font-size: 1em;
-  }
+}
 
 @tailwind utilities;
