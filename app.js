@@ -71,10 +71,12 @@ let app = {
     unsmokedCigarettesLiveValueRounded = (cigarettesByDay * (diffTime / 1000 / 60 / 60 / 24)).toFixed(5)
     unsmokedCigarettesDecimals = String((unsmokedCigarettesLiveValueRounded + "").split(".")[1]).slice(0, 2)
     unsmokedCigarettes = Math.floor(cigarettesByDay * (diffTime / 1000 / 60 / 60 / 24))
+    unsmokedCigarettesToDisplay = Math.floor(cigarettesByDay * (diffTime / 1000 / 60 / 60 / 24)).toLocaleString()
+    console.log(unsmokedCigarettesToDisplay)
     
-    packOfCig = unsmokedCigarettes / 20
+    packOfCig = (unsmokedCigarettes / 20)
     moneySaved = (cigarettesByDay * priceOneCig) * (diffTime / 1000 / 60 / 60 / 24)
-    burgers = moneySaved / 10
+    burgers = Math.floor(moneySaved / 10).toLocaleString()
 
     //bitcoin ?? 
     if (cryptoInfo != null) {
@@ -88,11 +90,11 @@ let app = {
     $('#unsmokedCigarettesLiveValue').empty().html('unsmokedCigarettesLiveValue: ' + unsmokedCigarettesLiveValue)
     $('#unsmokedCigarettesLiveValueRounded').html('unsmokedCigarettesLiveValueRounded: ' + unsmokedCigarettesLiveValueRounded)
     $('#unsmokedCigarettesLiveValueDecimals').html('unsmokedCigarettesLiveValueDecimals: ' + unsmokedCigarettesDecimals)
-    $('#unsmokedCigarettes').html('unsmokedCigarettes ' + unsmokedCigarettes)
+    $('#unsmokedCigarettes').html('unsmokedCigarettes ' + unsmokedCigarettesToDisplay)
     $('#eachMinutes').html(' ' + timeBetweenACig + ' ')
-    $('#moneySaved').html('' + moneySaved.toFixed(2))
-    $('#packOfCigs').html('' + Math.floor(packOfCig))
-    $('#burgers').html(Math.floor(burgers))
+    $('#moneySaved').html('' + moneySaved.toLocaleString())
+    $('#packOfCigs').html('' + Math.floor(packOfCig).toLocaleString())
+    $('#burgers').html(burgers)
     
     if (cryptoInfo != null) {
       $('#bitcoin').html(bitcoin.toFixed(4))
@@ -115,7 +117,7 @@ let app = {
       dialClass: "dial",
       gaugeClass: "gauge",
       showValue: true,
-      label: function() { return unsmokedCigarettes} // returns a string label that will be rendered in the center
+      label: function() { return unsmokedCigarettesToDisplay} // returns a string label that will be rendered in the center
     };
 
     $.fn.gauge = function(opts) {
@@ -168,7 +170,7 @@ let app = {
       dialClass: "dial",
       gaugeClass: "gauge",
       showValue: true,
-      label: function() { return unsmokedCigarettes} // returns a string label that will be rendered in the center
+      label: function() { return unsmokedCigarettesToDisplay} // returns a string label that will be rendered in the center
     }; 
 
     gauge = Gauge(document.getElementById('gauge0'), opts); // create sexy gauge!
