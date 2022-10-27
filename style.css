@@ -13,12 +13,12 @@ body {
     overflow: hidden;
   }
 .gauge-container > .gauge > .dial {
-  stroke: #e9d5ff;
+  stroke: #d1d5db;
   stroke-width: 0.7;
 }
 
 .gauge-container > .gauge > .value {
-  stroke: #a855f7;
+  stroke: #075985;
   stroke-width: 1;
 }
 
