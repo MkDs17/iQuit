@@ -64,347 +64,339 @@ let quotes = [
       "author": "Anonymous"
   }
 ]
-
-let app = {
   
-  init: function() {
-    console.log('init')
-    
-    Object.keys(quotes).forEach(function(key) {
-      content = quotes[key].content
-      author = quotes[key].author
-      console.log(content)
-      console.log(author)
-      $('#slideshow2 .splide__list').append(`<li class='splide__slide'><div class='flex items-center justify-center mx-1 relative h-full' id='oneHour'><div class='flex flex-col justify-between w-96 rounded-xl shadow-md py-2 px-4 border border-gray-50 bg-sky-100 h-full'><p class='text-gray-500 font-semibold text-sm text-left italic'>${content}</p><p class='text-gray-500 text-xs mt-1author'>${author}</p></div></div></li>`)
-    })
-
-    app.loadCryptoInfo()
-
-    // Recupere la date à l'instant T au démarrage de l'appli
-    app.getRealDate()
-
-    // Recupere la diff de temps en Timestamp entre 2 dates
-    app.calculateTimeBtwTwoDates()
-
-
-    app.loadDynamicInfos()
-    
-    app.loadGauge()
-
-    windowSize = $(window).width()
-    console.log(windowSize)
-    if(windowSize > 1601) {
-      divPerPage = 6
-    } if (windowSize > 1401 && windowSize <= 1600) {
-      divPerPage = 4
-    } if (windowSize <= 1400) {
-      divPerPage = 3
-    } if (windowSize <= 375) {
-      divPerPage = 2
-    } 
-
-    const splide = new Splide( '#slideshow1', {
-      type: 'loop',
-      drag: 'free',
-      focus: 'center',
-      arrows: false,
-      pagination: false,
-      perPage: divPerPage,
-      autoScroll: {
-        pauseOnHover: false,
-        speed: 0.4,
-      },
-    });
-
-    const splide2 = new Splide( '#slideshow2', {
-      type: 'loop',
-      drag: 'free',
-      focus: 'center',
-      arrows: false,
-      pagination: false,
-      perPage: divPerPage,
-      direction: 'rtl',
-      autoScroll: {
-        pauseOnHover: false,
-        speed: 0.1,
-      },
-    });
-    
-    splide.mount(window.splide.Extensions);
-    splide2.mount(window.splide.Extensions);
-  },
+function init() {
+  console.log('init')
   
-  updateWithInterval: function() {
-    app.getRealDate()
-    app.calculateTimeBtwTwoDates()
-    app.loadDynamicInfos()
-    app.updateGauge()
-  },
+  Object.keys(quotes).forEach(function(key) {
+    content = quotes[key].content
+    author = quotes[key].author
+    console.log(content)
+    console.log(author)
+    $('#slideshow2 .splide__list').append(`<li class='splide__slide'><div class='flex items-center justify-center mx-1 relative h-full' id='oneHour'><div class='flex flex-col justify-between w-96 rounded-xl shadow-md py-2 px-4 border border-gray-50 bg-sky-100 h-full'><p class='text-gray-500 font-semibold text-sm text-left italic'>${content}</p><p class='text-gray-500 text-xs mt-1author'>${author}</p></div></div></li>`)
+  })
 
-  loadCryptoInfo: function() {
-    cryptoInfo = null
-    
-    $.ajax({
-      method: "GET",
-      url: "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,elrond-erd-2,chiliz&vs_currencies=eur",
-    })
-      .done(function( data ) {
-        return cryptoInfo = data
-      });
-  },
+  loadCryptoInfo()
 
-  getRealDate: function() {
+  // Recupere la date à l'instant T au démarrage de l'appli
+  getRealDate()
 
-    dateNow = new Date().toLocaleDateString('en-US')
-    return dateNow
+  // Recupere la diff de temps en Timestamp entre 2 dates
+  calculateTimeBtwTwoDates()
 
-  },
+  loadDynamicInfos()
+  
+  loadGauge()
 
-  calculateTimeBtwTwoDates: function() {
+  windowSize = $(window).width()
+  console.log(windowSize)
+  if(windowSize > 1601) {
+    divPerPage = 6
+  } if (windowSize > 1401 && windowSize <= 1600) {
+    divPerPage = 4
+  } if (windowSize <= 1400) {
+    divPerPage = 3
+  } if (windowSize <= 375) {
+    divPerPage = 2
+  } 
 
-    let quitDate = new Date('10/01/2022 11:29:00');
-    let today = new Date();
-    let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    let dateTime = date+' '+time
+  const splide = new Splide( '#slideshow1', {
+    type: 'loop',
+    drag: 'free',
+    focus: 'center',
+    arrows: false,
+    pagination: false,
+    perPage: divPerPage,
+    autoScroll: {
+      pauseOnHover: false,
+      speed: 0.4,
+    },
+  });
 
-    diffDays = Math.floor((Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()) - Date.UTC(quitDate.getFullYear(), quitDate.getMonth(), quitDate.getDate())) / (1000 * 60 * 60 * 24));
-    diffTime = Math.abs(today - quitDate)
+  const splide2 = new Splide( '#slideshow2', {
+    type: 'loop',
+    drag: 'free',
+    focus: 'center',
+    arrows: false,
+    pagination: false,
+    perPage: divPerPage,
+    direction: 'rtl',
+    autoScroll: {
+      pauseOnHover: false,
+      speed: 0.1,
+    },
+  });
+  
+  splide.mount(window.splide.Extensions);
+  splide2.mount(window.splide.Extensions);
+}
+  
+function updateWithInterval() {
+  getRealDate()
+  calculateTimeBtwTwoDates()
+  loadDynamicInfos()
+  updateGauge()
+}
 
-    quiterSince = app.dhm(diffTime)
+function loadCryptoInfo() {
+  cryptoInfo = null
+  
+  $.ajax({
+    method: "GET",
+    url: "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,elrond-erd-2,chiliz&vs_currencies=eur",
+  })
+    .done(function( data ) {
+      return cryptoInfo = data
+    });
+}
 
-    $('#quiterSince').empty().html('<span>since ' + quiterSince[0] + ' days ' + quiterSince[1] + ' hours ' + quiterSince[2] + ' minutes and ' + quiterSince[3] + ' sec </span>')
+function getRealDate() {
+  dateNow = new Date().toLocaleDateString('en-US')
+  return dateNow
 
-  },
+}
 
-  loadDynamicInfos: function() {
+function calculateTimeBtwTwoDates() {
+  let quitDate = new Date('10/01/2022 11:29:00');
+  let today = new Date();
+  let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  let dateTime = date+' '+time
 
-    // Base value
-    cigarettesByDay = 15 // in 24*60 = 1400min
-    priceOneCig = 0.465
+  diffDays = Math.floor((Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()) - Date.UTC(quitDate.getFullYear(), quitDate.getMonth(), quitDate.getDate())) / (1000 * 60 * 60 * 24));
+  diffTime = Math.abs(today - quitDate)
 
-    // let nonSmokinCigarettes = cigarettesByDay * diffDays
-    unsmokedCigarettesLiveValue = (cigarettesByDay * (diffTime / 1000 / 60 / 60 / 24))
-    unsmokedCigarettesLiveValueRounded = (cigarettesByDay * (diffTime / 1000 / 60 / 60 / 24)).toFixed(5)
-    unsmokedCigarettesDecimals = String((unsmokedCigarettesLiveValueRounded + "").split(".")[1]).slice(0, 2)
-    unsmokedCigarettes = Math.floor(cigarettesByDay * (diffTime / 1000 / 60 / 60 / 24))
-    unsmokedCigarettesToDisplay = Math.floor(cigarettesByDay * (diffTime / 1000 / 60 / 60 / 24)).toLocaleString()
-    console.log(unsmokedCigarettesToDisplay)
-    
-    packOfCig = (unsmokedCigarettes / 20)
-    moneySaved = (cigarettesByDay * priceOneCig) * (diffTime / 1000 / 60 / 60 / 24)
-    burgers = Math.floor(moneySaved / 10).toLocaleString()
+  quiterSince = dhm(diffTime)
 
-    //bitcoin ?? 
-    if (cryptoInfo != null) {
-      bitcoin = moneySaved / cryptoInfo['bitcoin'].eur
-      chiliz = moneySaved / cryptoInfo['chiliz'].eur
-      egold = moneySaved / cryptoInfo['elrond-erd-2'].eur
-    } 
+  $('#quiterSince').empty().html('<span>since ' + quiterSince[0] + ' days ' + quiterSince[1] + ' hours ' + quiterSince[2] + ' minutes and ' + quiterSince[3] + ' sec </span>')
 
-    timeBetweenACig = Math.round(24 * 60 / cigarettesByDay)
+}
 
-    oneHourPourcentage = Math.floor((diffTime / 3600000) * 100)
-    twelveHoursPourcentage = Math.floor((diffTime / 43200000) * 100)
-    oneDayPourcentage = Math.floor((diffTime / 86400000) * 100)
-    twoDayPourcentage = Math.floor((diffTime / 172800000) * 100)
-    threeDayPourcentage = Math.floor((diffTime / 259200000) * 100)
-    oneMonthPourcentage = Math.floor((diffTime / 2592000000) * 100)
-    threeMonthsPourcentage = Math.floor((diffTime / 7776000000) * 100)
-    nineMonthsPourcentage = Math.floor((diffTime / 23328000000) * 100)
-    oneYearPourcentage = Math.floor((diffTime / 31104000000) * 100)
-    tenYearsPourcentage = Math.floor((diffTime / 311040000000) * 100)
-    fifteenYearsPourcentage = Math.floor((diffTime / 466560000000) * 100)
-    twentyYearsPourcentage = Math.floor((diffTime / 622080000000) * 100)
-    
-    console.log(oneYearPourcentage)
-    console.log(tenYearsPourcentage)
-    console.log(fifteenYearsPourcentage)
-    
-    successBadge = '<span class="absolute -top-3 right-0"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-12 h-12 text-sky-500"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></span>'
-    
-    // We don't want more than 100%
-    if (oneHourPourcentage >= 100) {
-      oneHourPourcentage = 100
-      // $('#oneHour').append(successBadge)
-      $('#oneHourPourcentage').addClass('text-sky-700 font-bold')
-    } if (twelveHoursPourcentage >= 100) {
-      twelveHoursPourcentage = 100
-      $('#twelveHoursPourcentage').addClass('text-sky-700 font-bold')
-      // $('#twelveHours').html(successBadge)
-    } if (oneDayPourcentage >= 100) {
-      oneDayPourcentage = 100
-      // $('#oneDay').html(successBadge)
-      $('#oneDayPourcentage').addClass('text-sky-700 font-bold')
-    } if (twoDayPourcentage >= 100) {
-      twoDayPourcentage = 100
-      // $('#twoDay').html(successBadge)
-      $('#twoDayPourcentage').addClass('text-sky-700 font-bold')
-    } if (threeDayPourcentage >= 100) {
-      threeDayPourcentage = 100
-      // $('#threeDay').html(successBadge)
-      $('#threeDayPourcentage').addClass('text-sky-700 font-bold')
-    } if (oneMonthPourcentage >= 100) {
-      oneMonthPourcentage = 100
-      // $('#oneMonth').html(successBadge)
-      $('#oneMonthPourcentage').addClass('text-sky-700 font-bold')
-    } if (threeMonthsPourcentage >= 100) {
-      threeMonthsPourcentage = 100
-      // $('#threeMonths').html(successBadge)
-      $('#threeMonthsPourcentage').addClass('text-sky-700 font-bold')
-    } if (nineMonthsPourcentage >= 100) {
-      nineMonthsPourcentage = 100
-      // $('#nineMonths').html(successBadge)
-      $('#nineMonthsPourcentage').addClass('text-sky-700 font-bold')
-    } if (oneYearPourcentage >= 100) {
-      oneYearPourcentage = 100
-      // $('#oneYear').html(successBadge)
-      $('#oneYearPourcentage').addClass('text-sky-700 font-bold')
-    } if (tenYearsPourcentage >= 100) {
-      tenYearsPourcentage = 100
-      // $('#tenYears').html(successBadge)
-      $('#tenYearsPourcentage').addClass('text-sky-700 font-bold')
-    } if (fifteenYearsPourcentage >= 100) {
-      fifteenYearsPourcentage = 100
-      // $('#fifteenYears').html(successBadge)
-      $('#fifteenYearsPourcentage').addClass('text-sky-700 font-bold')
-    } if (twentyYearsPourcentage >= 100) {
-      twentyYearsPourcentage = 100
-      // $('#twentyYears').html(successBadge)
-      $('#twentyYearsPourcentage').addClass('text-sky-700 font-bold')
-    }
+function  loadDynamicInfos() {
 
-    $('#unsmokedCigarettesLiveValue').empty().html('unsmokedCigarettesLiveValue: ' + unsmokedCigarettesLiveValue)
-    $('#unsmokedCigarettesLiveValueRounded').html('unsmokedCigarettesLiveValueRounded: ' + unsmokedCigarettesLiveValueRounded)
-    $('#unsmokedCigarettesLiveValueDecimals').html('unsmokedCigarettesLiveValueDecimals: ' + unsmokedCigarettesDecimals)
-    $('#unsmokedCigarettes').html('unsmokedCigarettes ' + unsmokedCigarettesToDisplay)
-    $('#eachMinutes').html(' ' + timeBetweenACig + ' ')
-    $('#moneySaved').html('' + moneySaved.toLocaleString())
-    $('#packOfCigs').html('' + Math.floor(packOfCig).toLocaleString())
-    $('#burgers').html(burgers)
+  // Base value
+  cigarettesByDay = 15 // in 24*60 = 1400min
+  priceOneCig = 0.465
 
-    $('#oneHourPourcentageStyle').css('width', oneHourPourcentage + '%')
-    $('#oneHourPourcentage').html(oneHourPourcentage + '%')
-    
-    $('#twelveHoursPourcentageStyle').css('width', twelveHoursPourcentage + '%')
-    $('#twelveHoursPourcentage').html(twelveHoursPourcentage + '%')
+  // let nonSmokinCigarettes = cigarettesByDay * diffDays
+  unsmokedCigarettesLiveValue = (cigarettesByDay * (diffTime / 1000 / 60 / 60 / 24))
+  unsmokedCigarettesLiveValueRounded = (cigarettesByDay * (diffTime / 1000 / 60 / 60 / 24)).toFixed(5)
+  unsmokedCigarettesDecimals = String((unsmokedCigarettesLiveValueRounded + "").split(".")[1]).slice(0, 2)
+  unsmokedCigarettes = Math.floor(cigarettesByDay * (diffTime / 1000 / 60 / 60 / 24))
+  unsmokedCigarettesToDisplay = Math.floor(cigarettesByDay * (diffTime / 1000 / 60 / 60 / 24)).toLocaleString()
+  console.log(unsmokedCigarettesToDisplay)
+  
+  packOfCig = (unsmokedCigarettes / 20)
+  moneySaved = (cigarettesByDay * priceOneCig) * (diffTime / 1000 / 60 / 60 / 24)
+  burgers = Math.floor(moneySaved / 10).toLocaleString()
 
-    $('#oneDayPourcentageStyle').css('width', oneDayPourcentage + '%')
-    $('#oneDayPourcentage').html(oneDayPourcentage + '%')
+  //bitcoin ?? 
+  if (cryptoInfo != null) {
+    bitcoin = moneySaved / cryptoInfo['bitcoin'].eur
+    chiliz = moneySaved / cryptoInfo['chiliz'].eur
+    egold = moneySaved / cryptoInfo['elrond-erd-2'].eur
+  } 
 
-    $('#twoDayPourcentageStyle').css('width', twoDayPourcentage + '%')
-    $('#twoDayPourcentage').html(twoDayPourcentage + '%')
+  timeBetweenACig = Math.round(24 * 60 / cigarettesByDay)
 
-    $('#threeDayPourcentageStyle').css('width', threeDayPourcentage + '%')
-    $('#threeDayPourcentage').html(threeDayPourcentage + '%')
+  oneHourPourcentage = Math.floor((diffTime / 3600000) * 100)
+  twelveHoursPourcentage = Math.floor((diffTime / 43200000) * 100)
+  oneDayPourcentage = Math.floor((diffTime / 86400000) * 100)
+  twoDayPourcentage = Math.floor((diffTime / 172800000) * 100)
+  threeDayPourcentage = Math.floor((diffTime / 259200000) * 100)
+  oneMonthPourcentage = Math.floor((diffTime / 2592000000) * 100)
+  threeMonthsPourcentage = Math.floor((diffTime / 7776000000) * 100)
+  nineMonthsPourcentage = Math.floor((diffTime / 23328000000) * 100)
+  oneYearPourcentage = Math.floor((diffTime / 31104000000) * 100)
+  tenYearsPourcentage = Math.floor((diffTime / 311040000000) * 100)
+  fifteenYearsPourcentage = Math.floor((diffTime / 466560000000) * 100)
+  twentyYearsPourcentage = Math.floor((diffTime / 622080000000) * 100)
+  
+  console.log(oneYearPourcentage)
+  console.log(tenYearsPourcentage)
+  console.log(fifteenYearsPourcentage)
+  
+  successBadge = '<span class="absolute -top-3 right-0"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-12 h-12 text-sky-500"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></span>'
+  
+  // We don't want more than 100%
+  if (oneHourPourcentage >= 100) {
+    oneHourPourcentage = 100
+    // $('#oneHour').append(successBadge)
+    $('#oneHourPourcentage').addClass('text-sky-700 font-bold')
+  } if (twelveHoursPourcentage >= 100) {
+    twelveHoursPourcentage = 100
+    $('#twelveHoursPourcentage').addClass('text-sky-700 font-bold')
+    // $('#twelveHours').html(successBadge)
+  } if (oneDayPourcentage >= 100) {
+    oneDayPourcentage = 100
+    // $('#oneDay').html(successBadge)
+    $('#oneDayPourcentage').addClass('text-sky-700 font-bold')
+  } if (twoDayPourcentage >= 100) {
+    twoDayPourcentage = 100
+    // $('#twoDay').html(successBadge)
+    $('#twoDayPourcentage').addClass('text-sky-700 font-bold')
+  } if (threeDayPourcentage >= 100) {
+    threeDayPourcentage = 100
+    // $('#threeDay').html(successBadge)
+    $('#threeDayPourcentage').addClass('text-sky-700 font-bold')
+  } if (oneMonthPourcentage >= 100) {
+    oneMonthPourcentage = 100
+    // $('#oneMonth').html(successBadge)
+    $('#oneMonthPourcentage').addClass('text-sky-700 font-bold')
+  } if (threeMonthsPourcentage >= 100) {
+    threeMonthsPourcentage = 100
+    // $('#threeMonths').html(successBadge)
+    $('#threeMonthsPourcentage').addClass('text-sky-700 font-bold')
+  } if (nineMonthsPourcentage >= 100) {
+    nineMonthsPourcentage = 100
+    // $('#nineMonths').html(successBadge)
+    $('#nineMonthsPourcentage').addClass('text-sky-700 font-bold')
+  } if (oneYearPourcentage >= 100) {
+    oneYearPourcentage = 100
+    // $('#oneYear').html(successBadge)
+    $('#oneYearPourcentage').addClass('text-sky-700 font-bold')
+  } if (tenYearsPourcentage >= 100) {
+    tenYearsPourcentage = 100
+    // $('#tenYears').html(successBadge)
+    $('#tenYearsPourcentage').addClass('text-sky-700 font-bold')
+  } if (fifteenYearsPourcentage >= 100) {
+    fifteenYearsPourcentage = 100
+    // $('#fifteenYears').html(successBadge)
+    $('#fifteenYearsPourcentage').addClass('text-sky-700 font-bold')
+  } if (twentyYearsPourcentage >= 100) {
+    twentyYearsPourcentage = 100
+    // $('#twentyYears').html(successBadge)
+    $('#twentyYearsPourcentage').addClass('text-sky-700 font-bold')
+  }
 
-    $('#oneMonthPourcentageStyle').css('width', oneMonthPourcentage + '%')
-    $('#oneMonthPourcentage').html(oneMonthPourcentage + '%')
+  $('#unsmokedCigarettesLiveValue').empty().html('unsmokedCigarettesLiveValue: ' + unsmokedCigarettesLiveValue)
+  $('#unsmokedCigarettesLiveValueRounded').html('unsmokedCigarettesLiveValueRounded: ' + unsmokedCigarettesLiveValueRounded)
+  $('#unsmokedCigarettesLiveValueDecimals').html('unsmokedCigarettesLiveValueDecimals: ' + unsmokedCigarettesDecimals)
+  $('#unsmokedCigarettes').html('unsmokedCigarettes ' + unsmokedCigarettesToDisplay)
+  $('#eachMinutes').html(' ' + timeBetweenACig + ' ')
+  $('#moneySaved').html('' + moneySaved.toLocaleString())
+  $('#packOfCigs').html('' + Math.floor(packOfCig).toLocaleString())
+  $('#burgers').html(burgers)
 
-    $('#threeMonthsPourcentageStyle').css('width', threeMonthsPourcentage + '%')
-    $('#threeMonthsPourcentage').html(threeMonthsPourcentage + '%')
+  $('#oneHourPourcentageStyle').css('width', oneHourPourcentage + '%')
+  $('#oneHourPourcentage').html(oneHourPourcentage + '%')
+  
+  $('#twelveHoursPourcentageStyle').css('width', twelveHoursPourcentage + '%')
+  $('#twelveHoursPourcentage').html(twelveHoursPourcentage + '%')
 
-    $('#nineMonthsPourcentageStyle').css('width', nineMonthsPourcentage + '%')
-    $('#nineMonthsPourcentage').html(nineMonthsPourcentage + '%')
+  $('#oneDayPourcentageStyle').css('width', oneDayPourcentage + '%')
+  $('#oneDayPourcentage').html(oneDayPourcentage + '%')
 
-    $('#oneYearPourcentageStyle').css('width', oneYearPourcentage + '%')
-    $('#oneYearPourcentage').html(oneYearPourcentage + '%')
+  $('#twoDayPourcentageStyle').css('width', twoDayPourcentage + '%')
+  $('#twoDayPourcentage').html(twoDayPourcentage + '%')
 
-    $('#tenYearsPourcentageStyle').css('width', tenYearsPourcentage + '%')
-    $('#tenYearsPourcentage').html(tenYearsPourcentage + '%')
+  $('#threeDayPourcentageStyle').css('width', threeDayPourcentage + '%')
+  $('#threeDayPourcentage').html(threeDayPourcentage + '%')
 
-    $('#fifteenYearsPourcentageStyle').css('width', fifteenYearsPourcentage + '%')
-    $('#fifteenYearsPourcentage').html(fifteenYearsPourcentage + '%')
+  $('#oneMonthPourcentageStyle').css('width', oneMonthPourcentage + '%')
+  $('#oneMonthPourcentage').html(oneMonthPourcentage + '%')
 
-    $('#twentyYearsPourcentageStyle').css('width', twentyYearsPourcentage + '%')
-    $('#twentyYearsPourcentage').html(twentyYearsPourcentage + '%')
-    
-    if (cryptoInfo != null) {
-      $('#bitcoin').html(bitcoin.toFixed(4))
-      $('#chiliz').html('<div class="flex items-center">chiliz ' + Math.floor(chiliz) + '</strong><img src="./chz.png" class="h-8 w-8" /></div>')
-      $('#egold').html('egold ' + Math.floor(egold))
-    }
+  $('#threeMonthsPourcentageStyle').css('width', threeMonthsPourcentage + '%')
+  $('#threeMonthsPourcentage').html(threeMonthsPourcentage + '%')
 
-  },
+  $('#nineMonthsPourcentageStyle').css('width', nineMonthsPourcentage + '%')
+  $('#nineMonthsPourcentage').html(nineMonthsPourcentage + '%')
 
-  loadGauge: function() {
-    const opts = {
-      lineWidth: 0,
-      dialStartAngle: -90,
-      dialEndAngle: -90.001,
-      value: unsmokedCigarettesDecimals,
-      min: 0,
-      max: 100,
-      valueDialClass: "value",
-      valueClass: "value-text",
-      dialClass: "dial",
-      gaugeClass: "gauge",
-      showValue: true,
-      label: function() { return unsmokedCigarettesToDisplay} // returns a string label that will be rendered in the center
-    };
+  $('#oneYearPourcentageStyle').css('width', oneYearPourcentage + '%')
+  $('#oneYearPourcentage').html(oneYearPourcentage + '%')
 
-    $.fn.gauge = function(opts) {
-      this.each(function() {
-        var $this = $(this),
-          data = $this.data()
-            
-        if (data.gauge) {
-          data.gauge.stop();
-          delete data.gauge;
-        }
-        if (opts !== false) {
-          data.gauge = new Gauge(this).setOptions(opts);
-        }
-      });
-      return this;
-    };
-    gauge = Gauge(document.getElementById('gauge0'), opts); // create sexy gauge!
-  },
+  $('#tenYearsPourcentageStyle').css('width', tenYearsPourcentage + '%')
+  $('#tenYearsPourcentage').html(tenYearsPourcentage + '%')
 
-  updateGauge: function() {
-    
-    gauge = $('#gauge0').empty()
+  $('#fifteenYearsPourcentageStyle').css('width', fifteenYearsPourcentage + '%')
+  $('#fifteenYearsPourcentage').html(fifteenYearsPourcentage + '%')
 
-    const opts = {
-      lineWidth: 0,
-      dialStartAngle: -90,
-      dialEndAngle: -90.001,
-      value: unsmokedCigarettesDecimals,
-      min: 0,
-      max: 100,
-      valueDialClass: "value",
-      valueClass: "value-text",
-      dialClass: "dial",
-      gaugeClass: "gauge",
-      showValue: true,
-      label: function() { return unsmokedCigarettesToDisplay} // returns a string label that will be rendered in the center
-    }; 
-
-    gauge = Gauge(document.getElementById('gauge0'), opts); // create sexy gauge!
-    
-  },
-
-  dhm: function (ms) {
-    const days = Math.floor(ms / (24*60*60*1000));
-    const daysms = ms % (24*60*60*1000);
-    const hours = Math.floor(daysms / (60*60*1000));
-    const hoursms = ms % (60*60*1000);
-    const minutes = Math.floor(hoursms / (60*1000));
-    const minutesms = ms % (60*1000);
-    const sec = Math.floor(minutesms / 1000);
-    
-    return [
-      days,
-      hours,
-      minutes,
-      sec
-    ]
+  $('#twentyYearsPourcentageStyle').css('width', twentyYearsPourcentage + '%')
+  $('#twentyYearsPourcentage').html(twentyYearsPourcentage + '%')
+  
+  if (cryptoInfo != null) {
+    $('#bitcoin').html(bitcoin.toFixed(4))
+    $('#chiliz').html('<div class="flex items-center">chiliz ' + Math.floor(chiliz) + '</strong><img src="./chz.png" class="h-8 w-8" /></div>')
+    $('#egold').html('egold ' + Math.floor(egold))
   }
 
 }
 
-$(app.init)
+function loadGauge() {
+  const opts = {
+    lineWidth: 0,
+    dialStartAngle: -90,
+    dialEndAngle: -90.001,
+    value: unsmokedCigarettesDecimals,
+    min: 0,
+    max: 100,
+    valueDialClass: "value",
+    valueClass: "value-text",
+    dialClass: "dial",
+    gaugeClass: "gauge",
+    showValue: true,
+    label: function() { return unsmokedCigarettesToDisplay} // returns a string label that will be rendered in the center
+  };
+
+  $.fn.gauge = function(opts) {
+    this.each(function() {
+      var $this = $(this),
+        data = $this.data()
+          
+      if (data.gauge) {
+        data.gauge.stop();
+        delete data.gauge;
+      }
+      if (opts !== false) {
+        data.gauge = new Gauge(this).setOptions(opts);
+      }
+    });
+    return this;
+  };
+  gauge = Gauge(document.getElementById('gauge0'), opts); // create sexy gauge!
+}
+
+function updateGauge() {
+  gauge = $('#gauge0').empty()
+
+  const opts = {
+    lineWidth: 0,
+    dialStartAngle: -90,
+    dialEndAngle: -90.001,
+    value: unsmokedCigarettesDecimals,
+    min: 0,
+    max: 100,
+    valueDialClass: "value",
+    valueClass: "value-text",
+    dialClass: "dial",
+    gaugeClass: "gauge",
+    showValue: true,
+    label: function() { return unsmokedCigarettesToDisplay} // returns a string label that will be rendered in the center
+  }; 
+
+  gauge = Gauge(document.getElementById('gauge0'), opts); // create sexy gauge!
+  
+}
+
+function dhm(ms) {
+  const days = Math.floor(ms / (24*60*60*1000));
+  const daysms = ms % (24*60*60*1000);
+  const hours = Math.floor(daysms / (60*60*1000));
+  const hoursms = ms % (60*60*1000);
+  const minutes = Math.floor(hoursms / (60*1000));
+  const minutesms = ms % (60*1000);
+  const sec = Math.floor(minutesms / 1000);
+  
+  return [
+    days,
+    hours,
+    minutes,
+    sec
+  ]
+}
+
+init()
 
 setInterval(function() {
-  $(app.updateWithInterval)
+  updateWithInterval()
 }, 1000)
