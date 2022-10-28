@@ -1,78 +1,80 @@
+const params = new URLSearchParams(window.location.search)
+
 let quotes = [
   {
-      "content": '"Believe you can and you\'re halfway there"',
+      "content": "Believe you can and you\'re halfway there",
       "author": "Theodore Roosevelt"
   },
   {
-      "content": '"It is in your moments of decision that your destiny is shaped"',
+      "content": "It is in your moments of decision that your destiny is shaped",
       "author": "Tony Robbins"
   },
   {
-      "content": '"Energy and persistence conquer all things"',
+      "content": "Energy and persistence conquer all things",
       "author": "Benjamin Franklin"
   },
   {
-      "content": '"If you\'re going through hell, keep going"',
+      "content": "If you\'re going through hell, keep going",
       "author": "Winston Churchill"
   },
   {
-      "content": '"Only I can change my life. No one can do it for me"',
+      "content": "Only I can change my life. No one can do it for me",
       "author": "Carol Burnett"
   },
   {
-      "content": '"Strength does not come from winning, Your struggles develop your strengths, When you go through hardships and decide not to surrender, that is strength"',
+      "content": "Strength does not come from winning, Your struggles develop your strengths, When you go through hardships and decide not to surrender, that is strength",
       "author": "Arnold Schwarzenegger"
   },
   {
-      "content": '"The will to win, the desire to succeed, the urge to reach your full potential... these are the keys that will unlock the door to personal excellence"',
+      "content": "The will to win, the desire to succeed, the urge to reach your full potential... these are the keys that will unlock the door to personal excellence",
       "author": "Confucius"
   },
   {
-      "content": '"Our greatest weakness lies in giving up. The most certain way to succeed is always to try just one more time"',
+      "content": "Our greatest weakness lies in giving up. The most certain way to succeed is always to try just one more time",
       "author": "Thomas Edison"
   },
   {
-      "content": '"It always seems impossible until it\'s done"',
+      "content": "It always seems impossible until it\'s done",
       "author": "Nelson Mandela"
   },
   {
-      "content": '"Smoking: It ruins your life, her life, and their lives"',
+      "content": "Smoking: It ruins your life, her life, and their lives",
       "author": "Anonymous"
   },
   {
-      "content": '"Replacing the smoke on your face with a smile today will replace illness in your life with happiness tomorrow"',
+      "content": "Replacing the smoke on your face with a smile today will replace illness in your life with happiness tomorrow",
       "author": "Anonymous"
   },
   {
-      "content": '"Our strength grows out of our weakness"',
+      "content": "Our strength grows out of our weakness",
       "author": "Ralph Waldo Emerson"
   },
   {
-      "content": '"Burn calories, not cigarettes"',
+      "content": "Burn calories, not cigarettes",
       "author": "Anonymous"
   },
   {
-      "content": '"Believe you can and you’re halfway there"',
+      "content": "Believe you can and you’re halfway there",
       "author": "Theodore Roosevelt"
   },
   {
-      "content": '"The key is focusing on the positive. Build up the good things in your life and the smoking will go away by itself"',
+      "content": "The key is focusing on the positive. Build up the good things in your life and the smoking will go away by itself",
       "author": "Anonymous"
   },
   {
-      "content": '"If people don’t love themselves enough to cut down on their smoking, they may love someone else enough to do it"',
+      "content": "If people don’t love themselves enough to cut down on their smoking, they may love someone else enough to do it",
       "author": "Anonymous"
   }
 ]
+
+
+console.log(params)
   
 function init() {
-  console.log('init')
   
   Object.keys(quotes).forEach(function(key) {
     content = quotes[key].content
     author = quotes[key].author
-    console.log(content)
-    console.log(author)
     $('#slideshow2 .splide__list').append(`<li class='splide__slide'><div class='flex items-center justify-center mx-1 relative h-full' id='oneHour'><div class='flex flex-col justify-between w-96 rounded-xl shadow-md py-2 px-4 border border-gray-50 bg-sky-100 h-full'><p class='text-gray-500 font-semibold text-sm text-left italic'>${content}</p><p class='text-gray-500 text-xs mt-1author'>${author}</p></div></div></li>`)
   })
 
@@ -156,26 +158,56 @@ function getRealDate() {
 
 }
 
+function getQuitTime() {
+  // let quitDate = new Date('10/27/2022 11:29:00')
+  const fallback = new Date('2022-10-27T11:29:00')
+  console.log(params.get("date"), 'hey here')
+  try {
+    const quitDate = new Date(params.has("date") ? params.get("date") : fallback)
+    console.log(quitDate, 'here')
+    return quitDate;
+  } catch (e) {
+    return fallback;
+  }
+}
+
 function calculateTimeBtwTwoDates() {
-  let quitDate = new Date('10/01/2022 11:29:00');
-  let today = new Date();
-  let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-  let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  const quitDate = getQuitTime()
+  console.log(quitDate)
+
+  let today = new Date()
+  let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()
+  let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
   let dateTime = date+' '+time
 
-  diffDays = Math.floor((Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()) - Date.UTC(quitDate.getFullYear(), quitDate.getMonth(), quitDate.getDate())) / (1000 * 60 * 60 * 24));
+  diffDays = Math.floor((Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()) - Date.UTC(quitDate.getFullYear(), quitDate.getMonth(), quitDate.getDate())) / (1000 * 60 * 60 * 24))
   diffTime = Math.abs(today - quitDate)
 
   quiterSince = dhm(diffTime)
 
-  $('#quiterSince').empty().html('<span>since ' + quiterSince[0] + ' days ' + quiterSince[1] + ' hours ' + quiterSince[2] + ' minutes and ' + quiterSince[3] + ' sec </span>')
+  quiterSinceString = ''
+  if (quiterSince[0] !== 0) {
+    quiterSinceString += quiterSince[0] + ' years '
+  } if (quiterSince[1] !== 0) {
+    quiterSinceString += quiterSince[1] + ' months '
+  } if (quiterSince[2] !== 0) {
+    quiterSinceString += quiterSince[2] + ' days '
+  } if (quiterSince[3] !== 0) {
+    quiterSinceString += quiterSince[3] + ' hours '
+  } if (quiterSince[4] !== 0) {
+    quiterSinceString += quiterSince[4] + ' minutes '
+  } if (quiterSince[5] !== 0) {
+    quiterSinceString += quiterSince[4] + ' sec '
+  }
+
+  $('#quiterSince').empty().html('<span>since ' + quiterSinceString + '</span>')
 
 }
 
 function  loadDynamicInfos() {
 
   // Base value
-  cigarettesByDay = 15 // in 24*60 = 1400min
+  const cigarettesByDay = params.has("cigs") ? params.get("cigs") : 15
   priceOneCig = 0.465
 
   // let nonSmokinCigarettes = cigarettesByDay * diffDays
@@ -316,8 +348,8 @@ function  loadDynamicInfos() {
   
   if (cryptoInfo != null) {
     $('#bitcoin').html(bitcoin.toFixed(4))
-    $('#chiliz').html('<div class="flex items-center">chiliz ' + Math.floor(chiliz) + '</strong><img src="./chz.png" class="h-8 w-8" /></div>')
-    $('#egold').html('egold ' + Math.floor(egold))
+    /* $('#chiliz').html('<div class="flex items-center">chiliz ' + Math.floor(chiliz) + '</strong><img src="./chz.png" class="h-8 w-8" /></div>')
+    $('#egold').html('egold ' + Math.floor(egold)) */
   }
 
 }
@@ -336,7 +368,7 @@ function loadGauge() {
     gaugeClass: "gauge",
     showValue: true,
     label: function() { return unsmokedCigarettesToDisplay} // returns a string label that will be rendered in the center
-  };
+  }
 
   $.fn.gauge = function(opts) {
     this.each(function() {
@@ -350,10 +382,10 @@ function loadGauge() {
       if (opts !== false) {
         data.gauge = new Gauge(this).setOptions(opts);
       }
-    });
+    })
     return this;
-  };
-  gauge = Gauge(document.getElementById('gauge0'), opts); // create sexy gauge!
+  }
+  gauge = Gauge(document.getElementById('gauge0'), opts) // create sexy gauge!
 }
 
 function updateGauge() {
@@ -372,22 +404,28 @@ function updateGauge() {
     gaugeClass: "gauge",
     showValue: true,
     label: function() { return unsmokedCigarettesToDisplay} // returns a string label that will be rendered in the center
-  }; 
+  }
 
-  gauge = Gauge(document.getElementById('gauge0'), opts); // create sexy gauge!
+  gauge = Gauge(document.getElementById('gauge0'), opts) // create sexy gauge!
   
 }
 
 function dhm(ms) {
-  const days = Math.floor(ms / (24*60*60*1000));
-  const daysms = ms % (24*60*60*1000);
-  const hours = Math.floor(daysms / (60*60*1000));
-  const hoursms = ms % (60*60*1000);
-  const minutes = Math.floor(hoursms / (60*1000));
-  const minutesms = ms % (60*1000);
-  const sec = Math.floor(minutesms / 1000);
+  const years = Math.floor(ms / (12*30*24*60*60*1000))
+  const yearssms = ms % (12*30*24*60*60*1000)
+  const months = Math.floor(ms / (30*24*60*60*1000))
+  const monthssms = ms % (30*24*60*60*1000)
+  const days = Math.floor(ms / (24*60*60*1000))
+  const daysms = ms % (24*60*60*1000)
+  const hours = Math.floor(daysms / (60*60*1000))
+  const hoursms = ms % (60*60*1000)
+  const minutes = Math.floor(hoursms / (60*1000))
+  const minutesms = ms % (60*1000)
+  const sec = Math.floor(minutesms / 1000)
   
   return [
+    years,
+    months,
     days,
     hours,
     minutes,
