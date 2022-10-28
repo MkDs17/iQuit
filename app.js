@@ -185,6 +185,8 @@ function calculateTimeBtwTwoDates() {
 
   quiterSince = dhm(diffTime)
 
+  console.log(quiterSince[2])
+
   quiterSinceString = ''
   if (quiterSince[0] !== 0) {
     quiterSinceString += quiterSince[0] + ' years '
@@ -197,8 +199,11 @@ function calculateTimeBtwTwoDates() {
   } if (quiterSince[4] !== 0) {
     quiterSinceString += quiterSince[4] + ' minutes '
   } if (quiterSince[5] !== 0) {
-    quiterSinceString += quiterSince[4] + ' sec '
+    quiterSinceString += quiterSince[5] + ' sec '
   }
+
+  console.log(quiterSince)
+  console.log(quiterSinceString)
 
   $('#quiterSince').empty().html('<span>since ' + quiterSinceString + '</span>')
 
@@ -411,26 +416,28 @@ function updateGauge() {
 }
 
 function dhm(ms) {
-  const years = Math.floor(ms / (12*30*24*60*60*1000))
-  const yearssms = ms % (12*30*24*60*60*1000)
-  const months = Math.floor(ms / (30*24*60*60*1000))
-  const monthssms = ms % (30*24*60*60*1000)
-  const days = Math.floor(ms / (24*60*60*1000))
-  const daysms = ms % (24*60*60*1000)
-  const hours = Math.floor(daysms / (60*60*1000))
-  const hoursms = ms % (60*60*1000)
-  const minutes = Math.floor(hoursms / (60*1000))
-  const minutesms = ms % (60*1000)
-  const sec = Math.floor(minutesms / 1000)
+  console.log(ms)
+    seconds = Math.floor(ms / 1000),
+    minutes = Math.floor(seconds / 60),
+    hours   = Math.floor(minutes / 60),
+    days    = Math.floor(hours / 24),
+    months  = Math.floor(days / 30),
+    years   = Math.floor(days / 365);
   
-  return [
-    years,
-    months,
-    days,
-    hours,
-    minutes,
-    sec
-  ]
+  seconds %= 60;
+  minutes %= 60;
+  hours %= 24;
+  days %= 30;
+  months %= 12;
+
+  console.log(seconds, 'seconds')
+  console.log(minutes, 'minutes')
+  console.log(hours, 'hours')
+  console.log(days, 'days')
+  console.log(months, 'months')
+  console.log(years, 'years')
+
+  return [ years, months, days, hours, minutes, seconds ];
 }
 
 init()
