@@ -6,9 +6,7 @@
 Follow me through my quest to quit smoking and see all my savings
 
 You can also test it with this url
-
 Change the get parameters `date` (quit date) and `cigs` (number of cigarets per day)
-
 `https://mike-quit.netlify.app/?date=2022/01/01&cigs=15`
 
 
