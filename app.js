@@ -66,9 +66,6 @@ let quotes = [
       "author": "Anonymous"
   }
 ]
-
-
-console.log(params)
   
 function init() {
   
@@ -79,6 +76,8 @@ function init() {
   })
 
   loadCryptoInfo()
+
+  getLikeDatas()
 
   // Recupere la date à l'instant T au démarrage de l'appli
   getRealDate()
@@ -132,6 +131,27 @@ function init() {
   splide.mount(window.splide.Extensions);
   splide2.mount(window.splide.Extensions);
 }
+
+function getLikeDatas() {
+  console.log('try get dataz')
+  $.ajax({
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept":"*",
+      "Access-Control-Allow-Origin": "*"
+    },
+    dataType: "json",
+    url: "https://support-me-api.herokuapp.com/api/like/1",
+    success: function(data){
+      console.log(data.data, 'likesData')
+      $('#likesNumber').html(data.data)
+    }
+  })
+  /* .done(function( data ) {
+    console.log(data.data, 'likesData')
+  }); */
+}
   
 function updateWithInterval() {
   getRealDate()
@@ -161,10 +181,8 @@ function getRealDate() {
 function getQuitTime() {
   // let quitDate = new Date('10/27/2022 11:29:00')
   const fallback = new Date('2022-10-27T11:29:00')
-  console.log(params.get("date"), 'hey here')
   try {
     const quitDate = new Date(params.has("date") ? params.get("date") : fallback)
-    console.log(quitDate, 'here')
     return quitDate;
   } catch (e) {
     return fallback;
@@ -173,7 +191,6 @@ function getQuitTime() {
 
 function calculateTimeBtwTwoDates() {
   const quitDate = getQuitTime()
-  console.log(quitDate)
 
   let today = new Date()
   let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()
@@ -184,8 +201,6 @@ function calculateTimeBtwTwoDates() {
   diffTime = Math.abs(today - quitDate)
 
   quiterSince = dhm(diffTime)
-
-  console.log(quiterSince[2])
 
   quiterSinceString = ''
   if (quiterSince[0] !== 0) {
@@ -201,9 +216,6 @@ function calculateTimeBtwTwoDates() {
   } if (quiterSince[5] !== 0) {
     quiterSinceString += quiterSince[5] + ' sec '
   }
-
-  console.log(quiterSince)
-  console.log(quiterSinceString)
 
   $('#quiterSince').empty().html('<span>since ' + quiterSinceString + '</span>')
 
@@ -248,10 +260,6 @@ function  loadDynamicInfos() {
   tenYearsPourcentage = Math.floor((diffTime / 311040000000) * 100)
   fifteenYearsPourcentage = Math.floor((diffTime / 466560000000) * 100)
   twentyYearsPourcentage = Math.floor((diffTime / 622080000000) * 100)
-  
-  console.log(oneYearPourcentage)
-  console.log(tenYearsPourcentage)
-  console.log(fifteenYearsPourcentage)
   
   successBadge = '<span class="absolute -top-3 right-0"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-12 h-12 text-sky-500"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></span>'
   
@@ -416,7 +424,6 @@ function updateGauge() {
 }
 
 function dhm(ms) {
-  console.log(ms)
     seconds = Math.floor(ms / 1000),
     minutes = Math.floor(seconds / 60),
     hours   = Math.floor(minutes / 60),
@@ -429,13 +436,6 @@ function dhm(ms) {
   hours %= 24;
   days %= 30;
   months %= 12;
-
-  console.log(seconds, 'seconds')
-  console.log(minutes, 'minutes')
-  console.log(hours, 'hours')
-  console.log(days, 'days')
-  console.log(months, 'months')
-  console.log(years, 'years')
 
   return [ years, months, days, hours, minutes, seconds ];
 }

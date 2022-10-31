@@ -7,6 +7,11 @@ body {
     font-family: 'Poppins';
 }
 
+nav > div {
+  border-radius: 3px 0 3px 50px;
+  text-align: center;
+}
+
 .gauge-container {
     width: 125px;
     height: 125px;
