@@ -319,6 +319,7 @@ function  loadDynamicInfos() {
   $('#unsmokedCigarettesLiveValueDecimals').html('unsmokedCigarettesLiveValueDecimals: ' + unsmokedCigarettesDecimals)
   $('#unsmokedCigarettes').html('unsmokedCigarettes ' + unsmokedCigarettesToDisplay)
   $('#eachMinutes').html(' ' + timeBetweenACig + ' ')
+  $('#eachMinutesMobile').html(' ' + timeBetweenACig + ' ')
   $('#moneySaved').html('' + moneySaved.toLocaleString())
   $('#packOfCigs').html('' + Math.floor(packOfCig).toLocaleString())
   $('#burgers').html(burgers)
@@ -395,14 +396,23 @@ function loadGauge() {
       if (opts !== false) {
         data.gauge = new Gauge(this).setOptions(opts);
       }
+      if (data.gauge1) {
+        data.gauge1.stop();
+        delete data.gauge1;
+      }
+      if (opts !== false) {
+        data.gauge1 = new Gauge(this).setOptions(opts);
+      }
     })
     return this;
   }
   gauge = Gauge(document.getElementById('gauge0'), opts) // create sexy gauge!
+  gauge1 = Gauge(document.getElementById('gauge1'), opts) // create sexy gauge!
 }
 
 function updateGauge() {
   gauge = $('#gauge0').empty()
+  gauge1 = $('#gauge1').empty()
 
   const opts = {
     lineWidth: 0,
@@ -420,6 +430,7 @@ function updateGauge() {
   }
 
   gauge = Gauge(document.getElementById('gauge0'), opts) // create sexy gauge!
+  gauge1 = Gauge(document.getElementById('gauge1'), opts) // create sexy gauge!
   
 }
 

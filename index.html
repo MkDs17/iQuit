@@ -16,13 +16,6 @@
 <body>
 
     <div class="bg-gray-900 h-full relative background">
-        <nav>
-            <div class="w-32 h-20 p-2 bg-sky-800 absolute top-0 right-0 cursor-pointer bg-gradient-to-r from-sky-100 to-sky-200" onClick="javascript:addLike()">
-                <span class="flex justify-center items-center"><span id="likesNumber" class="mr-2 text-lg text-sky-900"></span> <img class="h-5 w-5" src="https://github.githubassets.com/images/icons/emoji/unicode/1f4aa.png?v8" alt=""> </span>
-                <p class="font-light text-xs italic px-2"> Click to give me more strength </p>
-            </div>
-        </nav>
-        
         <h1 class="text-5xl font-bold text-white text-center pt-20 text-sky-200">
             Mickaël <span class="font-black">quit !</span>
         </h1>
@@ -30,104 +23,94 @@
 
         <div class="text-xl text-white font-semibold text-center pb-20">and this is what he saved ...</div>
 
-        <div class="flex justify-center px-1 lg:px-4 xl:px-40">
-            <div class='flex flex-col w-1/5 justify-evenly'>
-                <div class="flex items-center rounded-xl bg-sky-100 p-5 shadow-lg border-l-4 rounded-l-lg border-sky-700">
-                    <div class="flex h-10 w-10 items-center justify-center rounded-full border border-sky-100 bg-sky-50">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-8 h-8 text-stone-800">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 7.756a4.5 4.5 0 100 8.488M7.5 10.5h5.25m-5.25 3h5.25M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </div>
-                
-                    <div class="ml-4">
-                        <h3 class="font-semibold text-xl"><span id="moneySaved"></span> € </h3>
-                        <p class="text-xs text-gray-500">money saved</p>
-                        <!-- <p class="mt-2 text-sm text-gray-500">Last opened 4 days ago</p> -->
-                    </div>
-                </div>
-               
-                <div class="flex items-center rounded-xl bg-sky-100 p-5 shadow-lg border-l-4 rounded-l-lg border-sky-700">
-                    <div class="flex h-10 w-10 items-center justify-center rounded-full border border-sky-100 bg-sky-50">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-6 h-6 text-stone-800">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
-                        </svg>
-                          
-                    </div>
-                
-                    <div class="ml-4">
-                        <h3 class="font-semibold text-xl"><span id="packOfCigs"></span></h3>
-                        <p class="text-xs text-gray-500">cigarettes packs</p>
-                        <!-- <p class="mt-2 text-sm text-gray-500">Last opened 4 days ago</p> -->
+        <section>
+            <div class="flex justify-center px-1 lg:px-4 xl:px-40 flex-col sm:flex-row items-center sm:items-stretch">
+                <div class="flex items-center justify-center w-full sm:w-2/5 sm:hidden mb-4 sm">
+                    <div class="max-w-sm bg-sky-100 rounded-lg shadow-md mx-16">
+                        <!-- <img class="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" /> -->
+                        <div class="p-5">
+                            <div id="gauge1" class="gauge-container m-auto"></div>
+                            <a href="#">
+                                <h4 class="mb-1 text-2xl font-bold tracking-tight text-slate-800">Unsmoked Cigarettes</h4>
+                                <span class="mb-2 text-sm text-slate-800 text-center w-full">One cigaret each <span class="" id="eachMinutesMobile"></span> minutes</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="flex items-center justify-center w-2/5">
-                <div class="max-w-sm bg-sky-100 rounded-lg shadow-md mx-16">
-                    <!-- <img class="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" /> -->
-                    <div class="p-5">
-                        <div id="gauge0" class="gauge-container m-auto"></div>
-                        <a href="#">
-                            <h4 class="mb-1 text-2xl font-bold tracking-tight text-slate-800">Unsmoked Cigarettes</h4>
-                            <span class="mb-2 text-sm text-slate-800 text-center w-full">One cigaret each <span class="" id="eachMinutes"></span> minutes</span>
-                        </a>
+                <div class='flex w-full sm:w-1/5 justify-evenly flex-row sm:flex-col'>
+                    <div class="flex items-center rounded-xl bg-sky-100 p-5 shadow-lg border-l-4 rounded-l-lg border-sky-700 w-52 sm:w-full">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-full border border-sky-100 bg-sky-50">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-8 h-8 text-stone-800">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 7.756a4.5 4.5 0 100 8.488M7.5 10.5h5.25m-5.25 3h5.25M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                    
+                        <div class="ml-4">
+                            <h3 class="font-semibold text-xl"><span id="moneySaved"></span> € </h3>
+                            <p class="text-xs text-gray-500">money saved</p>
+                            <!-- <p class="mt-2 text-sm text-gray-500">Last opened 4 days ago</p> -->
+                        </div>
                     </div>
-                </div>
-            </div>
-            
-            <div class='flex flex-col w-1/5 justify-evenly'>
-                <div class="flex items-center rounded-xl bg-sky-100 p-5 shadow-lg border-l-4 rounded-l-lg border-sky-700">
-                    <div class="flex h-10 w-10 items-center justify-center rounded-full border border-sky-100 bg-sky-50">
-                        <img src="./btc.png" class="h-7 w-7" />
-                    </div>
-                
-                    <div class="ml-4">
-                        <h3 class="font-semibold text-xl"><span id="bitcoin"></span></h3>
-                        <p class="text-xs text-gray-500">bitcoin invested</p>
-                        <!-- <p class="mt-2 text-sm text-gray-500">Last opened 4 days ago</p> -->
+                   
+                    <div class="flex items-center rounded-xl bg-sky-100 p-5 shadow-lg border-l-4 rounded-l-lg border-sky-700 w-52 sm:w-full">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-full border border-sky-100 bg-sky-50">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-6 h-6 text-stone-800">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+                            </svg>
+                              
+                        </div>
+                    
+                        <div class="ml-4">
+                            <h3 class="font-semibold text-xl"><span id="packOfCigs"></span></h3>
+                            <p class="text-xs text-gray-500">cigarettes packs</p>
+                            <!-- <p class="mt-2 text-sm text-gray-500">Last opened 4 days ago</p> -->
+                        </div>
                     </div>
                 </div>
     
-                <div class="flex items-center rounded-xl bg-sky-100 p-5 shadow-lg border-l-4 rounded-l-lg border-sky-700">
-                    <div class="flex h-10 w-10 items-center justify-center rounded-full border border-sky-100 bg-sky-50">
-                            <img src="./burger.png" class="h-7 w-7" />
-                        </svg>
+                <div class="items-center justify-center w-2/5 hidden sm:flex">
+                    <div class="max-w-sm bg-sky-100 rounded-lg shadow-md mx-16">
+                        <!-- <img class="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" /> -->
+                        <div class="p-5">
+                            <div id="gauge0" class="gauge-container m-auto"></div>
+                            <a href="#">
+                                <h4 class="mb-1 text-2xl font-bold tracking-tight text-slate-800">Unsmoked Cigarettes</h4>
+                                <span class="mb-2 text-sm text-slate-800 text-center w-full">One cigaret each <span class="" id="eachMinutes"></span> minutes</span>
+                            </a>
+                        </div>
                     </div>
+                </div>
                 
-                    <div class="ml-4">
-                        <h3 class="font-semibold text-xl"><span id="burgers"></span></h3>
-                        <p class="text-xs text-gray-500">burgers eaten</p>
-                        <!-- <p class="mt-2 text-sm text-gray-500">Last opened 4 days ago</p> -->
+                <div class='flex w-full sm:w-1/5 justify-evenly flex-row sm:flex-col my-2'>
+                    <div class="flex items-center rounded-xl bg-sky-100 p-5 shadow-lg border-l-4 rounded-l-lg border-sky-700 w-52 sm:w-full">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-full border border-sky-100 bg-sky-50">
+                            <img src="./btc.png" class="h-7 w-7" />
+                        </div>
+                    
+                        <div class="ml-4">
+                            <h3 class="font-semibold text-xl"><span id="bitcoin"></span></h3>
+                            <p class="text-xs text-gray-500">bitcoin invested</p>
+                            <!-- <p class="mt-2 text-sm text-gray-500">Last opened 4 days ago</p> -->
+                        </div>
+                    </div>
+        
+                    <div class="flex items-center rounded-xl bg-sky-100 p-5 shadow-lg border-l-4 rounded-l-lg border-sky-700 w-52 sm:w-full">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-full border border-sky-100 bg-sky-50">
+                                <img src="./burger.png" class="h-7 w-7" />
+                            </svg>
+                        </div>
+                    
+                        <div class="ml-4">
+                            <h3 class="font-semibold text-xl"><span id="burgers"></span></h3>
+                            <p class="text-xs text-gray-500">burgers eaten</p>
+                            <!-- <p class="mt-2 text-sm text-gray-500">Last opened 4 days ago</p> -->
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- <div class="flex justify-center px-4 mt-10 slideshow-container">
-            <div class="flex justify-center px-4 mt-10 slideshow">
-                <div class="flex items-center justify-center mx-1 relative h-full" id='hour'>
-                    <div class="w-96 rounded-xl shadow-md p-5 border border-gray-50 bg-sky-100">
-                        <p class="text-slate-800 font-semibold">1 hour</p>
-                        <div class="w-full bg-gray-300 rounded-full h-1 mt-3">
-                            <div class="bg-sky-500 h-1 rounded-full" id='hourPourcentage'></div>
-                        </div>
-                        <p class="text-gray-500 text-xs mt-5">Blood pressure begins to drop, and circulation may start to improve.</p>
-                    </div>
-                </div>
-                <div class="flex items-center justify-center mx-1 relative h-full" id='twelveHours'>
-                    <div class="w-96 rounded-xl shadow-md p-5 border border-gray-50 bg-sky-100">
-                        <p class="text-slate-800 font-semibold">12 hours</p>
-                        <div class="w-full bg-gray-300 rounded-full h-1 mt-3">
-                            <div class="bg-sky-500 h-1 rounded-full" id="twelveHoursPourcentage"></div>
-                        </div>
-                        <p class="text-gray-500 text-xs mt-5">The carbon monoxide level returns to normal, increasing the body’s oxygen levels.</p>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-
-        <section id="slideshow1" class="splide mt-20 h-40" aria-label="Splide Basic HTML Example">
+        <section id="slideshow1" class="splide mt-20 h-56 sm:h-40" aria-label="Splide Basic HTML Example">
             <div class="splide__track">
                 <ul class="splide__list">
                     <li class="splide__slide">
@@ -280,18 +263,29 @@
 
         <div class="text-xl text-white font-semibold text-center mt-16">Need strength ?</div>
 
-        <section id="slideshow2" class="splide mt-4 h-28 pb-12" aria-label="Splide Basic HTML Example">
+        <section id="slideshow2" class="splide mt-4 h-64 sm:h-40 pb-12" aria-label="Splide Basic HTML Example">
             <div class="splide__track">
                 <ul class="splide__list">
                 </ul>
             </div>
         </section>
 
-
-        <div class="support h-8">
-            <div class="number"></div>
-            <div class="action"></div>
-        </div>
+        <section class="bg-gray-900">
+            <div class="max-w-screen-xl px-4 py-4 mx-auto overflow-hidden sm:px-6 lg:px-8">
+                <a class="my-4 text-sm text-center text-gray-400 flex justify-center" href="https://mike-quit.netlify.app/?date=2021/10/28&cigs=15">Test with your own quit date : https://mike-quit.netlify.app/?date=2021/10/28&cigs=15</a>
+                <div class="flex justify-center">
+                    <a href="https://github.com/MkDs17/iQuit" class="text-gray-400 hover:text-gray-500">
+                        <span class="sr-only">GitHub</span>
+                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                </div>
+                <p class="mt-2 text-sm text-center text-gray-400">
+                    © 2022 MkDs17, Inc. All rights reserved.
+                </p>
+            </div>
+        </section>
     </div>
           
         <!-- Source -->
@@ -326,7 +320,6 @@
             } else {
                 alert('already supported dude, but thanks')
             }
-
         }
     </script>
 </body>
