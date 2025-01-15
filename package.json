@@ -1,6 +1,12 @@
 {
-    "name": "iquit",
-    "type": "module",
-    "dependencies": {
-    }
+  "name": "iquit",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "A project to help people quit bad habits.",
+  "keywords": [
+    "quit",
+    "bad habits",
+    "self-improvement"
+  ],
+  "author": "Mickael <mickael.rassicot@gmail.com>"
 }
